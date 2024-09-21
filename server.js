@@ -34,6 +34,20 @@ apiRouter.get("/", (req, res, next) => {
     res.send({ quotes });
   }
 });
+
+apiRouter.post("/", (req, res, next) => {
+  const { quote, person } = req.query;
+
+  if (!quote || !person) {
+    return res
+      .status(400)
+      .send({ message: "Harap sertakan kutipan dan nama orang." });
+  }
+  const newQuote = { quote, person };
+  quotes.push(newQuote);
+  res.status(201).send({ quote: newQuote });
+});
+
 app.listen(PORT, () => {
   console.log(`Server running in http://localhost:${PORT}`);
 });
