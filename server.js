@@ -4,6 +4,9 @@ const app = express();
 const { quotes } = require("./data");
 const { getRandomElement } = require("./utils");
 
+const apiRouter = express.Router();
+app.use("/api/quotes", apiRouter);
+
 const PORT = process.env.PORT || 4001;
 
 app.use(express.static("public"));
